@@ -293,7 +293,7 @@ def activity_overview_plot(data, output_path):
 
 def cumulative_plot (metadata, output_path):
     fig, ax1 = plt.subplots(1, figsize=(6,4))
-    idx = pd.date_range('06.01.2016', dt.datetime.now())
+    idx = pd.date_range('06.01.2016', '02.28.2018')
     a = metadata.groupby('Tagged Date')['Tag Hex'].nunique()
     a.index = pd.DatetimeIndex(a.index)
     a = a.reindex(idx, fill_value=0)
@@ -365,9 +365,61 @@ def plot_individual_birds (data, bird_IDs, output_path, Bird_summary_data):
     fig.savefig(output_path+'/'+ 'bird_activities.png',dpi=300 )
 
 
-# In[ ]:
+def plotvisits(timeunit, data, ax, c = ['#e41a1c', '#377eb8', '#4daf4a']):
+           
+        """timeunite: 10Min, D =  day, W = week, M = month"""
+        if timeunit == '10Min':
+            t = '10 minutes'
+        elif timeunit == 'D':
+            t = 'day'
+        elif timeunit == 'W':
+            t = 'week'
+        if timeunit == 'M':
+            t = 'month'
+        data.groupby([ pd.Grouper(freq=timeunit)])['ID'].count().plot(kind="line", rot =45, ax= ax)
+
+        #ax.set_title('visits per '+t)
+        ax.set_xlabel('Time')
+        ax.set_ylabel('Number of daily visits')
 
 
+def plotBirdnight (data, bird_ID, Bird_summary_data, start, end, ax):
+    b1 = data.ix[start:end]
+    df = b1[b1.ID == bird_ID]
+    start_date = start
+    idx = pd.date_range(start_date, end,freq='1h')
+    ten = df.resample('1h')['ID'].count().reindex(idx, fill_value=0).reset_index()
+    ten.columns= ['Time','visits']
+    ten['Time'] = pd.to_datetime(ten['Time'])
+    ten = ten.set_index(pd.DatetimeIndex(ten['Time']))
+
+    indices=[]
+    for i in range(len(ten.index.hour)):
+        if (ten.index.hour[i]>=22)|(ten.index.hour[i]<=4):
+            indices.append(i)
+    del indices[-1]
+    
+    b1 = ten
+    #b1 = getplotBird(bird_IDs[i],)
+    b1.drop(b1.columns[0], axis=1, inplace= True)
+    n_plot = b1.plot(ax=ax,  color = '#2ca25f', linewidth=1, xticks=b1.index)
+    gender = Bird_summary_data.loc[Bird_summary_data['Tag Hex'] == bird_ID, 'Sex'].iloc[0]
+    age = Bird_summary_data.loc[Bird_summary_data['Tag Hex'] == bird_ID, 'Age'].iloc[0]
+    ax.set_ylabel('hourly feeder visits')
+    ax.set_title(bird_ID+', '+age+', '+gender)
+    #n_plot.set_xticklabels(labels=["{0:.2f}".format(round(a,2)) for a in ten.index.hour], rotation = 90)
+    label = []
+    for h in ten.index.hour:
+        label.append(datetime.time(h))
+    #n_plot.set_xticklabels(labels=label, rotation = 90)
+
+    #ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    ax.xaxis.grid(True, which="major")
+    ax.yaxis.grid(True, which="major")
+    for i in indices:
+        ax.axvspan(b1.index[i], b1.index[i+1], facecolor='green', edgecolor='none', alpha=.2)
+        
+        
 def bar_plot_report(data, output_path, bin_unit, species = None, month_name= False):
     """
     options for bin unit
@@ -469,6 +521,23 @@ def report_Table1A (metadata, location = None):
     Tagged_Gender = metadata2.pivot_table(index='Sex', columns='Species', aggfunc= 'count', values='Tag Hex',
                                  fill_value=0, margins=True).astype(int)
     return Tagged_Gender
+
+def report_Table2Paper (metadata, location = None):
+    if location:
+        metadata2 = metadata[metadata['Location Id'].isin(location)]
+    else:
+        metadata2 = metadata
+    metadata2.replace("ALHU", "Allen's Hummingbird", inplace = True)
+    metadata2.replace("ANHU", "Anna's Hummingbird", inplace = True)
+    metadata2.replace("RUHU", "Rufous Hummingbird", inplace = True)
+    metadata2.replace("AHY", "after hatch year", inplace = True)
+    metadata2.replace("HY", "hatch year", inplace = True)
+    metadata2.replace("UNK", "unknown", inplace = True)
+    metadata2.replace("M", "male", inplace = True)
+    metadata2.replace("F", "female", inplace = True)
+    Table_2 = metadata2.pivot_table(index='Location Id', columns='Species', aggfunc= 'count', values='Tag Hex',
+                                 fill_value=0, margins=True).astype(int)
+    return Table_2
 
 def report_Table1B (metadata, location = None):
     if location:
