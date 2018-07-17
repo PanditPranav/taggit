@@ -810,9 +810,11 @@ def diurnal_variation(dataframe, output_path, circular = True, normalize = False
         #f.suptitle('Diel variation of tagged hummingbirds at feeders', fontsize = 24)
         f.tight_layout(rect=[0, 0.03, 1, 0.95])
     if normalize:
-        plt.savefig(output_path+'\diel_plot_adjusted.png')
+        plt.savefig(output_path+'\diel_plot_adjusted.png',  dpi = 1000)
+        plt.savefig(output_path+'/'+'diel_plot_adjusted.eps',format = 'eps',  dpi = 1000)
     else:
-        plt.savefig(output_path+'\diel_plot.png')
+        plt.savefig(output_path+'\diel_plot.png',  dpi = 1000)
+        plt.savefig(output_path+'/'+'diel_plot.eps',format = 'eps',  dpi = 1000)
 
     plt.show()
     from astropy.stats import rayleightest
