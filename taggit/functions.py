@@ -292,6 +292,7 @@ def activity_overview_plot(data, output_path):
 
 
 def cumulative_plot (metadata, output_path):
+    import matplotlib.dates as mdates
     fig, ax1 = plt.subplots(1, figsize=(6,4))
     idx = pd.date_range('06.01.2016', '02.28.2018')
     a = metadata.groupby('Tagged Date')['Tag Hex'].nunique()
@@ -299,10 +300,21 @@ def cumulative_plot (metadata, output_path):
     a = a.reindex(idx, fill_value=0)
     tl = a.cumsum()
     tl.columns = ['sampling']
-    tl.plot.line(drawstyle = 'steps', label='Animals', ax = ax1)
+    tl.plot.line(drawstyle = 'steps', label='Animals', rot =45,ax = ax1)
+    #set ticks every month
+    ax1.xaxis.set_major_locator(mdates.MonthLocator())
+    #set major ticks format
+    ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y %b'))
+    
+    ## hiding every second month
+    for index, label in enumerate(ax1.xaxis.get_ticklabels()):
+        if index % 3 != 0:
+            label.set_visible(False)
+    
     ax1.set_ylabel('Individuals tagged', fontsize = 11)
     ax1.set_xlabel('Time', fontsize = 11)
-    ax1.set_title('cumulative tagging of birds')
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])
+    #ax1.set_title('cumulative tagging of birds')
     plt.savefig(output_path+'/'+'cumulative_tagging.png', dpi = 300)
     plt.show()
 
