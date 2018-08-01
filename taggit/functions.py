@@ -753,7 +753,8 @@ def diurnal_variation(dataframe, output_path, circular = True, normalize = False
         # set the label
         ticks = ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00']
         ax.set_xticklabels(ticks)
-
+        
+        
     if circular:
         rlim = 3.5
         f, ((ax1, ax2),(ax3, ax4))  = plt.subplots(2, 2, figsize=(12,9), dpi=400, subplot_kw=dict(projection='polar'))
@@ -767,10 +768,10 @@ def diurnal_variation(dataframe, output_path, circular = True, normalize = False
             ax3.set_rlim(0, rlim)
             ax4.set_rlim(0, rlim)
         from astropy.stats import rayleightest
-        ax1.set_title('fall: p = '+"%.3f" % rayleightest(fall['mean']), fontsize = 12)
-        ax2.set_title('winter: p = '+ "%.3f" % rayleightest(winter['mean']), fontsize = 12)
-        ax3.set_title('spring: p = '+"%.3f" % rayleightest(spring['mean']), fontsize = 12)
-        ax4.set_title('summer: p = '+"%.3f" % rayleightest(summer['mean']), fontsize = 12)
+        ax1.set_title('fall: p = '+"%.3f" % rayleightest(fall['mean']), fontsize = 12, y=1.08)
+        ax2.set_title('winter: p = '+ "%.3f" % rayleightest(winter['mean']), fontsize = 12, y=1.08)
+        ax3.set_title('spring: p = '+"%.3f" % rayleightest(spring['mean']), fontsize = 12, y=1.08)
+        ax4.set_title('summer: p = '+"%.3f" % rayleightest(summer['mean']), fontsize = 12, y=1.08)
         #if normalize:
         #    f.suptitle('Diel variation of tagged hummingbirds at feeders\n(average hourly visits per bird)', fontsize = 24)
         #else:
