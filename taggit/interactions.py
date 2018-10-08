@@ -201,3 +201,77 @@ def interactive_plot(network, network_name, layout_func = 'fruchterman_reingold'
 
     #output_file("interactive_graphs.html")
     return plot
+
+##############################################################################################
+##############################################################################################
+
+
+def run_permutation_test(dependent, network, number_of_permutations, output_path):
+    nodes = pd.DataFrame.from_dict(dict(network.nodes(data=True)), orient='index')
+    degree = pd.DataFrame.from_dict(dict(network.degree()), orient='index')
+    centrality = pd.DataFrame.from_dict(dict(nx.betweenness_centrality(network)), orient='index')
+    h1 = pd.concat([nodes, degree, centrality], axis=1).reset_index(0)
+    h1.columns = ['ID', 'Age', 'Species', 'type', 'Location', 'Sex', 'degree', 'centrality']
+    h1['degree_dist'] = h1.degree/float(h1.degree.max())
+
+    equation = dependent + "~ Age + Sex"
+    from statsmodels.genmod.generalized_estimating_equations import GEE
+    from statsmodels.genmod.cov_struct import (Exchangeable,
+        Independence,Autoregressive)
+    from statsmodels.genmod.families import Poisson
+    fam = Poisson()
+    ind = Independence()
+
+    model = GEE.from_formula(equation, "Location", h1, cov_struct=ind, family=fam)
+    main_model_result = model.fit()
+    main_result  = pd.DataFrame(main_model_result.params).T
+
+    degree_random_coeff = []
+    for i in range (number_of_permutations):
+        rand_h1= h1.copy()
+        rand_h1[dependent] = np.random.permutation(h1[dependent])
+        fam = Poisson()
+        ind = Independence()
+        model = GEE.from_formula(equation, "Location", rand_h1, cov_struct=ind, family=fam)
+        result = model.fit()
+        degree_random_coeff.append(result.params)
+
+
+
+    d = pd.DataFrame.from_records(degree_random_coeff)
+    import seaborn as sns
+    f, (ax1,ax2, ax3) = plt.subplots(1, 3, sharey=True)
+    ax1.hist(d['Age[T.HY]'], bins = 100)
+    ax1.axvline(x=main_result['Age[T.HY]'].values[0], color = '#fc9272')
+    p = (d['Age[T.HY]']>main_result['Age[T.HY]'].values[0]).sum()/float(number_of_permutations)
+    if p>0.5:
+        p = 1-p
+    else:
+        p = p
+    ax1.set_xlabel('Coefficient Age: Hatch Year\n(ref: After Hatch Year)\np= '+'{0:.2f}'.format(p))
+    ax1.set_ylabel('Frequency')
+
+    ax2.hist(d['Age[T.UNK]'], bins = 100)
+    ax2.axvline(x=main_result['Age[T.UNK]'].values[0], color = '#fc9272')
+    p = (d['Age[T.UNK]']>main_result['Age[T.UNK]'].values[0]).sum()/float(number_of_permutations)
+    if p>0.5:
+        p = 1-p
+    else:
+        p = p
+
+    ax2.set_xlabel('Coefficient Age: Unknown\n(ref: After Hatch Year)\np= '+'{0:.2f}'.format(p))
+
+    ax3.hist(d['Sex[T.M]'], bins = 100)
+    ax3.axvline(x=main_result['Sex[T.M]'].values[0], color = '#fc9272')
+    p = (d['Sex[T.M]']>main_result['Sex[T.M]'].values[0]).sum()/float(number_of_permutations)
+    if p>0.5:
+        p = 1-p
+    else:
+        p = p
+
+    ax3.set_xlabel('Coefficient Sex: Male\n (ref: Female)\np= '+'{0:.2f}'.format(p))
+    title = 'permutation test for '+ dependent  
+    f.suptitle(title)
+    plt.tight_layout()
+    plt.savefig(output_path+'/'+dependent+'_Permutation_test.png', dpi = 300)
+    plt.show()

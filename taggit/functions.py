@@ -395,7 +395,7 @@ def plotvisits(timeunit, data, ax, c = ['#e41a1c', '#377eb8', '#4daf4a']):
         ax.set_ylabel('Number of daily visits')
 
 
-def plotBirdnight (data, bird_ID, Bird_summary_data, start, end, ax):
+def plotBirdnight (data, bird_ID, Bird_summary_data, start, end,  ax, title = False):
     b1 = data.ix[start:end]
     df = b1[b1.ID == bird_ID]
     start_date = start
@@ -418,7 +418,8 @@ def plotBirdnight (data, bird_ID, Bird_summary_data, start, end, ax):
     gender = Bird_summary_data.loc[Bird_summary_data['Tag Hex'] == bird_ID, 'Sex'].iloc[0]
     age = Bird_summary_data.loc[Bird_summary_data['Tag Hex'] == bird_ID, 'Age'].iloc[0]
     ax.set_ylabel('hourly feeder visits')
-    ax.set_title(bird_ID+', '+age+', '+gender)
+    if title:
+        ax.set_title(age +', '+gender)
     #n_plot.set_xticklabels(labels=["{0:.2f}".format(round(a,2)) for a in ten.index.hour], rotation = 90)
     label = []
     for h in ten.index.hour:
@@ -649,7 +650,7 @@ def report_Table2B (data, metadata, location= None):
     return Visit_age
 
 
-
+"""
 def diurnal_variation(dataframe, output_path, circular = True, normalize = False, get_df = False):
     
     plt.rcParams['font.family'] = 'Times New Roman'
@@ -681,10 +682,10 @@ def diurnal_variation(dataframe, output_path, circular = True, normalize = False
     dataframe['Time'] = pd.to_datetime(dataframe['visit_start'], format= '%H:%M:%S' ).dt.time
     f1 = dataframe.ix['2016-9-23':'2016-12-20']
     f2 = dataframe.ix['2017-9-22':'2017-12-21']
-    
     f = pd.concat([f1, f2], axis=0)
     print 'earliest visit in fall ' +str (f['Time'].min())
     print 'latest visit in fall ' +str (f['Time'].max())
+    
     w1 = dataframe.ix['2016-12-21':'2017-03-19']
     w2 = dataframe.ix['2017-12-22':'2018-03-19']
     w = pd.concat([w1, w2], axis=0)
@@ -696,6 +697,7 @@ def diurnal_variation(dataframe, output_path, circular = True, normalize = False
     sp = pd.concat([sp1, sp2], axis=0)
     print 'earliest visit in spring ' +str (sp['Time'].min())
     print 'latest visit in spring ' +str (sp['Time'].max())
+    
     s1 = dataframe.ix['2017-06-20':'2017-9-22']
     s2 = dataframe.ix['2018-06-22':'2018-9-22']
     s = pd.concat([s1, s2], axis=0)
@@ -826,8 +828,151 @@ def diurnal_variation(dataframe, output_path, circular = True, normalize = False
     print 'fall: p = ',"%.3f" % rayleightest(fall['mean'])
     if get_df:
         return winter, spring, summer, fall
+"""    
     
+def diurnal_variation(dataframe, output_path):
+    idx = pd.date_range('2016-9-22', dataframe.visit_start.max().date(),freq='1H')
+    agg_funcs_s = {'ID':['count', 'nunique']}
+    hour = dataframe.resample('1H').agg(agg_funcs_s)#.reindex(idx, fill_value=0).reset_index()
+    hour.columns = hour.columns.get_level_values(1)
+    hour['c'] =hour['count']/hour['nunique'] 
+    hour['c'].fillna(0, inplace = True)
+    hour.drop(['count', 'nunique'],axis=1,  inplace= True)
+    hour = hour.reindex(idx, fill_value=0).reindex(idx, fill_value=0).reset_index()
+    
+    plt.rcParams['font.family'] = 'Times New Roman'
+    plt.rcParams['font.size'] = 12
+    plt.rcParams['axes.labelsize'] = plt.rcParams['font.size']
+    plt.rcParams['axes.titlesize'] = 1.5*plt.rcParams['font.size']
+    plt.rcParams['legend.fontsize'] = plt.rcParams['font.size']+1
+    plt.rcParams['xtick.labelsize'] = plt.rcParams['font.size']
+    plt.rcParams['ytick.labelsize'] = plt.rcParams['font.size']
 
+    agg_funcs = {'visits':[np.mean, np.sum, np.std, 'count', 'sem']}
+        
+    Birds = dataframe.ID.unique().tolist()
+    fall = []
+    winter = []
+    spring = []
+    summer = []
+    for bird in Birds:
+        temp_bird = dataframe[dataframe.ID == bird]
+        hour = temp_bird.resample('1H')['ID'].count().reindex(idx, fill_value=0).reset_index()
+        hour.columns= ['Time','visits']
+        hour['Time'] = pd.to_datetime(hour['Time'])
+        hour = hour.set_index(pd.DatetimeIndex(hour['Time']))
+        hour['h'] = pd.to_datetime(hour['Time'], format= '%H:%M:%S' ).dt.time
+        fall1 = hour.ix['2016-9-23':'2016-12-20']
+        fall2 = hour.ix['2017-9-23':'2017-12-21']
+        falld = pd.concat([fall1, fall2], axis=0)
+        fall_temp = falld.groupby(falld.h).agg(agg_funcs)
+        fall_temp=fall_temp.rename(columns = {'visits':'fall'})
+
+        winter1 = hour.ix['2016-12-21':'2017-03-19']
+        winter2 = hour.ix['2017-12-22':'2018-03-19']
+        winterd = pd.concat([winter1, winter2], axis=0)
+        winter_temp = winterd.groupby(winterd.h).agg(agg_funcs)
+        winter_temp=winter_temp.rename(columns = {'visits':'winter'})
+
+        spring1 = hour.ix['2017-03-20':'2017-06-19']
+        spring2 = hour.ix['2018-03-20':'2018-04-30']
+        springd = pd.concat([spring1, spring2], axis=0)
+        spring_temp = springd.groupby(springd.h).agg(agg_funcs)
+        spring_temp=spring_temp.rename(columns = {'visits':'spring'})
+
+        summer1 = hour.ix['2017-06-20':'2017-9-22']
+        summer2 = hour.ix['2018-06-22':'2018-9-22']
+        summerd = pd.concat([summer1, summer2], axis=0)
+        summer_temp = summerd.groupby(summerd.h).agg(agg_funcs)
+        summer_temp=summer_temp.rename(columns = {'visits':'summer'})
+
+        fall.append(fall_temp)
+        winter.append(winter_temp)
+        spring.append(spring_temp)
+        summer.append(summer_temp)
+
+
+    spring_h = pd.concat(spring, axis=1)
+    fall_h = pd.concat(fall, axis=1)
+    winter_h = pd.concat(winter, axis=1)
+    summer_h = pd.concat(summer, axis=1)
+
+    fall_h.replace(0, np.nan, inplace= True)
+    spring_h.replace(0, np.nan, inplace= True)
+    winter_h.replace(0, np.nan, inplace= True)
+    summer_h.replace(0, np.nan, inplace= True)
+
+    spring_h['SEM']= spring_h.filter(like='mean').sem(axis = 1)
+    spring_h['MEAN']= spring_h.filter(like='mean').mean(axis = 1)
+    s_h = spring_h[['SEM', 'MEAN']].copy()
+    fall_h['SEM']= fall_h.filter(like='mean').sem(axis = 1)
+    fall_h['MEAN']= fall_h.filter(like='mean').mean(axis = 1)
+    f_h = fall_h[['SEM', 'MEAN']].copy()
+    winter_h['SEM']= winter_h.filter(like='mean').sem(axis = 1)
+    winter_h['MEAN']= winter_h.filter(like='mean').mean(axis = 1)
+    w_h = winter_h[['SEM', 'MEAN']].copy()
+    summer_h['SEM']= summer_h.filter(like='mean').sem(axis = 1)
+    summer_h['MEAN']= summer_h.filter(like='mean').mean(axis = 1)
+    su_h = summer_h[['SEM', 'MEAN']].copy()
+    
+    
+    
+    def plot_circular(df, ax):
+        # make a polar plot
+        N = 24
+        bottom = 0
+        width = (2*np.pi) / N
+        # create theta for 24 hours
+        theta = np.linspace(0.0, 2 * np.pi, N, endpoint=False)
+        bars = ax.bar(theta, df['MEAN'].values, width=width, bottom=bottom, yerr = df['SEM'].values)
+        # set the lable go clockwise and start from the top
+        ax.set_theta_zero_location("S")
+        # clockwise
+        ax.set_theta_direction(-1)
+        # set the label
+        ticks = ['0:00', '3:00', '6:00', '9:00', '12:00', '15:00', '18:00', '21:00']
+        ax.set_xticklabels(ticks)
+
+
+    plt.rcParams['xtick.major.pad']='8'
+    rlim = 0.8
+    f, ((ax1, ax2),(ax3, ax4))  = plt.subplots(2, 2, figsize=(12,9), dpi=400, subplot_kw=dict(projection='polar'))
+    plot_circular(df = f_h, ax = ax1)
+    plot_circular(df = w_h, ax = ax2)
+    plot_circular(df = s_h, ax = ax3)
+    plot_circular(df = su_h, ax = ax4)
+    ax1.set_rlim(0, rlim)
+    ax2.set_rlim(0, rlim)
+    ax3.set_rlim(0, rlim)
+    ax4.set_rlim(0, rlim)
+
+    ticks = [0.2, 0.4, 0.6, 0.8]
+    ax1.set_rticks(ticks)
+    ax2.set_rticks(ticks)
+    ax3.set_rticks(ticks)
+    ax4.set_rticks(ticks)
+
+    from astropy.stats import rayleightest
+    ax1.set_title('fall: p = '+"%.3f" % rayleightest(f_h['MEAN']), fontsize = 12, y=1.08)
+    ax2.set_title('winter: p = '+ "%.3f" % rayleightest(w_h['MEAN']), fontsize = 12, y=1.08)
+    ax3.set_title('spring: p = '+"%.3f" % rayleightest(s_h['MEAN']), fontsize = 12, y=1.08)
+    ax4.set_title('summer: p = '+"%.3f" % rayleightest(su_h['MEAN']), fontsize = 12, y=1.08)
+    #if normalize:
+    #    f.suptitle('Diel variation of tagged hummingbirds at feeders\n(average hourly visits per bird)', fontsize = 24)
+    #else:
+    #    f.suptitle('Diel variation of tagged hummingbirds at feeders', fontsize = 24)
+    f.tight_layout(rect=[0, 0.03, 1, 0.95])
+    plt.savefig(output_path+'\diel_plot_adjusted.png',  dpi = 1000)
+    plt.savefig(output_path+'/'+'diel_plot_adjusted.eps',format = 'eps',  dpi = 1000)
+    
+    plt.show()
+    from astropy.stats import rayleightest
+    print ('Rayleigh test identify a non-uniform distribution, i.e. it is\ndesigned for detecting an unimodal deviation from uniformity')
+    print 'winter: p = ', "%.3f" % rayleightest(w_h['MEAN'])
+    print 'spring: p = ',"%.3f" % rayleightest(s_h['MEAN'])
+    print 'summer: p = ',"%.3f" % rayleightest(su_h['MEAN'])
+    print 'fall: p = ',"%.3f" % rayleightest(f_h['MEAN'])
+    
 
 
 def plot_predilection(reader_predilection, output_path):
