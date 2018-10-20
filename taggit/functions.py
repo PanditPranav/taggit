@@ -830,8 +830,21 @@ def diurnal_variation(dataframe, output_path, circular = True, normalize = False
         return winter, spring, summer, fall
 """    
     
-def diurnal_variation(dataframe, output_path):
-    idx = pd.date_range('2016-9-22', dataframe.visit_start.max().date(),freq='1H')
+def diurnal_variation(dataframe, output_path, species, sex, rlim):
+    """sex: M, F, 
+    species: ANHU, ALHU"""
+    if species == 'all':
+        dataframe = dataframe
+    else:
+        dataframe = dataframe[dataframe.Species == species]
+        
+    if sex == 'both':
+        dataframe = dataframe
+    else:
+        dataframe = dataframe[dataframe.Sex == sex]
+    
+    #idx = pd.date_range('2016-9-22', dataframe.visit_start.max().date(),freq='1H')
+    idx = pd.date_range('2016-9-22', dataframe.Date.max(),freq='1H')
     agg_funcs_s = {'ID':['count', 'nunique']}
     hour = dataframe.resample('1H').agg(agg_funcs_s)#.reindex(idx, fill_value=0).reset_index()
     hour.columns = hour.columns.get_level_values(1)
@@ -935,18 +948,25 @@ def diurnal_variation(dataframe, output_path):
 
 
     plt.rcParams['xtick.major.pad']='8'
-    rlim = 0.8
+    rlim = rlim
     f, ((ax1, ax2),(ax3, ax4))  = plt.subplots(2, 2, figsize=(12,9), dpi=400, subplot_kw=dict(projection='polar'))
     plot_circular(df = f_h, ax = ax1)
     plot_circular(df = w_h, ax = ax2)
     plot_circular(df = s_h, ax = ax3)
     plot_circular(df = su_h, ax = ax4)
-    ax1.set_rlim(0, rlim)
-    ax2.set_rlim(0, rlim)
-    ax3.set_rlim(0, rlim)
-    ax4.set_rlim(0, rlim)
+    
 
-    ticks = [0.2, 0.4, 0.6, 0.8]
+    maximum = max(su_h.MEAN.fillna(0).max(),w_h.MEAN.max(),s_h.MEAN.max(),w_h.MEAN.max())
+    rlim = maximum
+    ticks = list(np.arange(0.0, rlim, rlim/float(5)))
+    ticks = ticks[1:]
+    ticks = [ round(elem, 2) for elem in ticks]
+    limit = ticks[-1] + 0.4*ticks[-1]
+    ax1.set_rlim(0, limit)
+    ax2.set_rlim(0, limit)
+    ax3.set_rlim(0, limit)
+    ax4.set_rlim(0, limit)
+    #ticks = [0.2, 0.4, 0.6, 0.8]
     ax1.set_rticks(ticks)
     ax2.set_rticks(ticks)
     ax3.set_rticks(ticks)
@@ -962,8 +982,8 @@ def diurnal_variation(dataframe, output_path):
     #else:
     #    f.suptitle('Diel variation of tagged hummingbirds at feeders', fontsize = 24)
     f.tight_layout(rect=[0, 0.03, 1, 0.95])
-    plt.savefig(output_path+'\diel_plot_adjusted.png',  dpi = 1000)
-    plt.savefig(output_path+'/'+'diel_plot_adjusted.eps',format = 'eps',  dpi = 1000)
+    plt.savefig(output_path+'\diel_plot_adjusted_'+species+'_'+sex+'.png',  dpi = 1000)
+    plt.savefig(output_path+'/'+'diel_plot_adjusted_'+species+'_'+sex+'.eps',format = 'eps',dpi = 1000)
     
     plt.show()
     from astropy.stats import rayleightest
