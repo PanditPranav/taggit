@@ -1,0 +1,518 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key attr.name="weight" attr.type="double" for="edge" id="d5"/>
+<key attr.name="Location" attr.type="string" for="node" id="d4"/>
+<key attr.name="Species" attr.type="string" for="node" id="d3"/>
+<key attr.name="type" attr.type="string" for="node" id="d2"/>
+<key attr.name="Sex" attr.type="string" for="node" id="d1"/>
+<key attr.name="Age" attr.type="string" for="node" id="d0"/>
+<graph edgedefault="undirected"><node id="3D6.00184967D9">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.00184967D4">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967D5">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967D1">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967F1">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967F7">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967B8">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.00184967F8">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967AF">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967AD">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967AC">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967CE">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967CC">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967ED">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967E9">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.00184967E7">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.00184967E6">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.00184967A7">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.00184967A6">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967A4">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967C8">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.1D593D787F">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967A8">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967BF">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967BC">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<node id="3D6.00184967BA">
+  <data key="d0">HY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.1D593D77E1">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.1D593D782B">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.1D593D7848">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">M</data>
+</node>
+<node id="3D6.00184967A2">
+  <data key="d0">AHY</data>
+  <data key="d3">ANHU</data>
+  <data key="d2">host</data>
+  <data key="d4">Arboretum</data>
+  <data key="d1">F</data>
+</node>
+<edge source="3D6.00184967D9" target="3D6.00184967E7">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967D4" target="3D6.00184967ED">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967D5" target="3D6.00184967AF">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967D5" target="3D6.00184967AD">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967D1" target="3D6.00184967BF">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967D1" target="3D6.00184967F1">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967D1" target="3D6.00184967BC">
+  <data key="d5">2.0</data>
+</edge>
+<edge source="3D6.00184967D1" target="3D6.00184967A4">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.00184967D1" target="3D6.00184967B8">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967D1" target="3D6.00184967ED">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967BF">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967E7">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967BC">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967A7">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967A4">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967A2">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967B8">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967ED">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967F1" target="3D6.00184967A8">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967F7" target="3D6.00184967A4">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967AF">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967AD">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967BF">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967E7">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967CC">
+  <data key="d5">10.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967BC">
+  <data key="d5">10.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967A4">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.1D593D787F">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967F8">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967B8" target="3D6.00184967ED">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.00184967AF">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.00184967AD">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.1D593D782B">
+  <data key="d5">2.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.00184967BF">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.00184967E7">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.00184967A4">
+  <data key="d5">10.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.00184967A2">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.1D593D787F">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967F8" target="3D6.1D593D77E1">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.00184967AF" target="3D6.00184967AD">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.00184967AF" target="3D6.1D593D782B">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967AF" target="3D6.00184967BF">
+  <data key="d5">2.0</data>
+</edge>
+<edge source="3D6.00184967AF" target="3D6.00184967E7">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967AF" target="3D6.00184967A4">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967AF" target="3D6.1D593D787F">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967AF" target="3D6.1D593D7848">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967AD" target="3D6.00184967AC">
+  <data key="d5">2.0</data>
+</edge>
+<edge source="3D6.00184967AD" target="3D6.00184967BF">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967AD" target="3D6.00184967E7">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967AD" target="3D6.00184967BC">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967AD" target="3D6.00184967A4">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967AD" target="3D6.1D593D787F">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967AD" target="3D6.00184967A8">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967CE" target="3D6.00184967ED">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967CC" target="3D6.00184967BF">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967CC" target="3D6.00184967A4">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967ED" target="3D6.00184967E7">
+  <data key="d5">10.0</data>
+</edge>
+<edge source="3D6.00184967ED" target="3D6.00184967BC">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967ED" target="3D6.00184967A4">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967E9" target="3D6.00184967BF">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967BF">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967BC">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967E6">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967A7">
+  <data key="d5">34.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967A6">
+  <data key="d5">10.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967A2">
+  <data key="d5">11.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.1D593D787F">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967A4">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.1D593D77E1">
+  <data key="d5">2.0</data>
+</edge>
+<edge source="3D6.00184967E7" target="3D6.00184967A8">
+  <data key="d5">2.0</data>
+</edge>
+<edge source="3D6.00184967E6" target="3D6.00184967A7">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967E6" target="3D6.00184967BC">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967E6" target="3D6.00184967A2">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967E6" target="3D6.00184967A8">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967A7" target="3D6.00184967BC">
+  <data key="d5">6.0</data>
+</edge>
+<edge source="3D6.00184967A7" target="3D6.00184967A6">
+  <data key="d5">19.0</data>
+</edge>
+<edge source="3D6.00184967A7" target="3D6.00184967A2">
+  <data key="d5">3.0</data>
+</edge>
+<edge source="3D6.00184967A7" target="3D6.00184967A8">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967A6" target="3D6.00184967BC">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967A6" target="3D6.00184967BA">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.00184967A6" target="3D6.1D593D77E1">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967A6" target="3D6.00184967A4">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967A4" target="3D6.1D593D782B">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.00184967A4" target="3D6.00184967BF">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.00184967A4" target="3D6.00184967BC">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967A4" target="3D6.00184967A2">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.00184967A4" target="3D6.1D593D787F">
+  <data key="d5">11.0</data>
+</edge>
+<edge source="3D6.00184967A4" target="3D6.1D593D77E1">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967A4" target="3D6.1D593D7848">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.00184967C8" target="3D6.00184967BC">
+  <data key="d5">7.0</data>
+</edge>
+<edge source="3D6.1D593D787F" target="3D6.00184967BF">
+  <data key="d5">8.0</data>
+</edge>
+<edge source="3D6.1D593D787F" target="3D6.1D593D7848">
+  <data key="d5">5.0</data>
+</edge>
+<edge source="3D6.00184967A8" target="3D6.00184967BC">
+  <data key="d5">12.0</data>
+</edge>
+<edge source="3D6.00184967BF" target="3D6.1D593D782B">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967BF" target="3D6.00184967BC">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967BF" target="3D6.00184967A2">
+  <data key="d5">11.0</data>
+</edge>
+<edge source="3D6.00184967BF" target="3D6.1D593D77E1">
+  <data key="d5">10.0</data>
+</edge>
+<edge source="3D6.00184967BF" target="3D6.1D593D7848">
+  <data key="d5">4.0</data>
+</edge>
+<edge source="3D6.00184967BC" target="3D6.00184967A2">
+  <data key="d5">9.0</data>
+</edge>
+<edge source="3D6.1D593D77E1" target="3D6.00184967A2">
+  <data key="d5">6.0</data>
+</edge>
+</graph></graphml>
