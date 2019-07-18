@@ -121,7 +121,8 @@ def collapse_reads_10_seconds(data):
         temp_bird = data[data.ID == bird]
         for r in temp_bird.Reader.unique().tolist():
             tempdf = temp_bird[temp_bird.Reader == r]
-            tempdf = tempdf.sort_values(by='DateTime',ascending=True)
+            #tempdf = tempdf.sort_values(by='DateTime',ascending=True)
+            tempdf = tempdf.sort_index(ascending=True)
             tempdf['timediff'] = tempdf.index.to_series().diff().fillna(0)
             bird_wise_data.append(tempdf)
     data = pd.concat(bird_wise_data, axis=0)
